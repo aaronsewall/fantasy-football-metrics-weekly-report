@@ -278,6 +278,22 @@ Yahoo Fantasy Sports has a public API documented [here](https://developer.yahoo.
 
 8. The first time you run the app, it will initialize the OAuth connection between the report generator and your Yahoo account.
 
+**Experimental browser-session option:** As an alternative to OAuth, you may set `YAHOO_BROWSER_COOKIE_JAR_PATH` to a
+user-owned Netscape-format `cookies.txt` file. This path enables the read-only browser-session transport and does not
+require Yahoo consumer key or secret settings. The cookies can expire or be invalidated, so this option may need to be
+refreshed periodically. It is experimental and undocumented, and the cookie file contains sensitive session
+credentials: never commit it or include it in a report. Optionally, `YAHOO_BROWSER_API_BASE_URL` can override the
+browser-session API base URL.
+
+For example (use a path outside the repository when possible):
+
+```dotenv
+YAHOO_BROWSER_COOKIE_JAR_PATH=/secure/private/path/cookies.txt
+# YAHOO_BROWSER_API_BASE_URL=https://pub-api-rw.fantasysports.yahoo.com
+```
+
+Do not use real cookie contents in documentation or tests, and do not check the `cookies.txt` file into source control.
+
 **NOTE**:***If your Yahoo league uses FAAB (Free Agent Acquisition Budget) for player waivers, you must set the `YAHOO_INITIAL_FAAB_BUDGET` value in the `.env` file to reflect your league's starting budget, since this information does not seem to be available in the Yahoo API.***
 
 ##### You are now ready to [generate a report!](#running-the-report-application)

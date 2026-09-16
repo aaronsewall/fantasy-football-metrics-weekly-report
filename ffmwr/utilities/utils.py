@@ -24,6 +24,7 @@ class FFMWRPythonObjectJson(PythonObjectJson):
                 "yahoo_consumer_key",
                 "yahoo_consumer_secret",
                 "yahoo_access_token_json",
+                "yahoo_browser_cookie_jar_path",
                 "espn_username",
                 "espn_password",
                 "espn_cookie_swid",

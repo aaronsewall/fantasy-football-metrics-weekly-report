@@ -95,6 +95,8 @@ class YahooPlatform(BasePlatform):
         self.yahoo_query = None
 
     def _authenticate(self) -> None:
+        browser_cookie_jar_path = self.settings.platform_settings.yahoo_browser_cookie_jar_path
+        browser_session_mode = browser_cookie_jar_path is not None
         self.yahoo_query = YahooFantasySportsQuery(
             self.league.league_id,
             game_code=f"{self.game_id}",
@@ -102,20 +104,28 @@ class YahooPlatform(BasePlatform):
             # only provide Yahoo consumer key if no saved Yahoo access token data
             yahoo_consumer_key=(
                 self.settings.platform_settings.yahoo_consumer_key
-                if not self.settings.platform_settings.yahoo_access_token_json
+                if not browser_session_mode and not self.settings.platform_settings.yahoo_access_token_json
                 else None
             ),
             # only provide Yahoo consumer secret if no saved Yahoo access token data
             yahoo_consumer_secret=(
                 self.settings.platform_settings.yahoo_consumer_secret
-                if not self.settings.platform_settings.yahoo_access_token_json
+                if not browser_session_mode and not self.settings.platform_settings.yahoo_access_token_json
                 else None
             ),
-            yahoo_access_token_json=self.settings.platform_settings.yahoo_access_token_json,
+            yahoo_access_token_json=(
+                None if browser_session_mode else self.settings.platform_settings.yahoo_access_token_json
+            ),
+            env_var_fallback=not browser_session_mode,
             browser_callback=False,
+            browser_cookie_jar_path=browser_cookie_jar_path,
+            browser_api_base_url=self.settings.platform_settings.yahoo_browser_api_base_url,
             offline=self.league.offline,
         )
-        self.yahoo_query.save_access_token_data_to_env_file(env_file_location=self.root_dir, save_json_to_var_only=True)
+        if not browser_session_mode:
+            self.yahoo_query.save_access_token_data_to_env_file(
+                env_file_location=self.root_dir, save_json_to_var_only=True
+            )
 
     # TODO: find better pattern for player points retrieval instead of passing around a class method object
     # def get_player_data(self, player_key: str, week: int = None):

@@ -15,6 +15,12 @@
 
 # auth secrets
 **private*.json
+cookies.txt
+*.cookies.txt
+
+# BEGIN oh-my-opencode-slim clonedeps
+.slim/clonedeps/repos/
+# END oh-my-opencode-slim clonedeps
 
 # output
 **logs/

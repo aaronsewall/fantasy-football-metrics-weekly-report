@@ -167,6 +167,19 @@ class PlatformSettings(CustomSettings):
     yahoo_consumer_key: Optional[str] = Field(None, title=__qualname__)
     yahoo_consumer_secret: Optional[str] = Field(None, title=__qualname__)
     yahoo_access_token_json: Optional[Dict[str, Any]] = Field(None, title=__qualname__)
+    yahoo_browser_cookie_jar_path: Optional[Path] = Field(
+        None,
+        title=__qualname__,
+        description=(
+            "YAHOO LEAGUES ONLY (EXPERIMENTAL): path to a user-owned Netscape cookies.txt file for the read-only "
+            "browser-session API; do not commit this file"
+        ),
+    )
+    yahoo_browser_api_base_url: Optional[str] = Field(
+        None,
+        title=__qualname__,
+        description="YAHOO LEAGUES ONLY (EXPERIMENTAL): optional browser-session API base URL",
+    )
     yahoo_game_id: Optional[str | int] = Field(
         "nfl",
         title=__qualname__,
