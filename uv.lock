@@ -340,7 +340,7 @@ requires-dist = [
     { name = "tornado", specifier = "==6.5.2" },
     { name = "urllib3", specifier = "==2.2.3" },
     { name = "yahoo-oauth", specifier = "==2.1.1" },
-    { name = "yfpy", specifier = "==17.0.0" },
+    { name = "yfpy", git = "https://github.com/aaronsewall/yfpy.git?rev=420fe8d" },
 ]
 
 [package.metadata.requires-dev]
@@ -1411,14 +1411,10 @@ wheels = [
 [[package]]
 name = "yfpy"
 version = "17.0.0"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/aaronsewall/yfpy.git?rev=420fe8d#420fe8d78daf130abd8157878e9cce208ce83bc2" }
 dependencies = [
     { name = "python-dotenv" },
     { name = "requests" },
     { name = "stringcase" },
     { name = "yahoo-oauth" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/9a/da/cc153f8382c73cbe016d3db59a11a8c86c124779f387f7d7ca7224844ee1/yfpy-17.0.0.tar.gz", hash = "sha256:beee91d5160130a756c4950eb36f60fe35b22fef3304f69c6fb1342a66c02299", size = 3359463, upload-time = "2025-09-14T05:20:08.994Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/c7/f8/ce70f40a81302f92861a8d0f99b8db4311fad9b263c6abe20efb574cf404/yfpy-17.0.0-py3-none-any.whl", hash = "sha256:b0a374205064194ae5a4486ae925a528c42491f3c1e5ceea704819c3d491ec3f", size = 59653, upload-time = "2025-09-14T05:20:07.73Z" },
 ]

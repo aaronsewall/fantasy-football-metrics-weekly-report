@@ -55,6 +55,9 @@ Issues = "https://github.com/uberfastman/fantasy-football-metrics-weekly-report/
 [tool.uv]
 package = false
 
+[tool.uv.sources]
+yfpy = { git = "https://github.com/aaronsewall/yfpy.git", rev = "420fe8d" }
+
 [tool.setuptools]
 py-modules = []
 
